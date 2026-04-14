@@ -9,9 +9,7 @@ const validationSchema = Yup.object().shape({
     .required('Title is required')
     .min(3, 'Title must be at least 3 characters')
     .max(50, 'Title is too long'),
-  content: Yup.string()
-    .required('Content is required')
-    .max(500, 'Content is too long'),
+  content: Yup.string().max(500, 'Content is too long'),
   tag: Yup.mixed<NoteTag>()
     .oneOf(Object.values(NoteTag))
     .required('Tag is required'),
@@ -41,7 +39,7 @@ export default function NoteForm({ onSubmit, onCancel }: NoteFormProps) {
     values: NoteFormValues,
     actions: FormikHelpers<NoteFormValues>,
   ) => {
-    onSubmit(values);
+    onSubmit(values as Note);
     actions.resetForm();
   };
 
