@@ -25,7 +25,7 @@ export const fetchNotes = async (currentPage: number, perPage: number, search: s
     return response.data;
 };
 
-export const createNote = async({title, content, tag} : Note): Promise<MutateNoteResponse> => {
+export const createNote = async({title, content, tag} : {title: string, content: string, tag: string}): Promise<MutateNoteResponse> => {
     const response = await axios.post<MutateNoteResponse>(API_URL, {title, content, tag}, {
         headers: { Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}` }
     });
